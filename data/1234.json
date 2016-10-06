@@ -1,0 +1,68 @@
+{
+	"id": 1234,
+	"template": {
+		"id": 1,
+		"name": "St. Joseph's School"
+	},
+	"client":{
+		"id": 1,
+		"name": "St. Joseph's Secondary School",
+		"address": {
+			"unit_no": 25,
+			"address1": "Some Street",
+			"address2": "",
+			"town": "Croydon",
+			"county": "Surrey",
+			"post_code": "CR9 7AX"
+		}
+	},
+	"audit_date": "2016-03-06 00:00:00",
+	"areas": [
+		{
+			"id": "hall",
+			"name": "Assembly Hall",
+			"checks": [
+				{
+					"id": "hall_qc1",
+					"description": "Has the floor been polished?",
+					"type": "yes/no"
+				},
+				{
+					"id": "hall_qc2",
+					"description": "How clean are the windows?",
+					"type": "stars",
+					"max": 5,
+					"min": 1
+				},
+				{
+					"id": "hall_qc3",
+					"description": "Please rate the quality of the dusting",
+					"type": "RAG"
+				}
+			]
+		},
+		{
+			"id": "class1",
+			"name": "Classroom 1",
+			"checks": [
+				{
+					"id": "class1_qc1",
+					"description": "Has the floor been hoovered?",
+					"type": "yes/no"
+				},
+				{
+					"id": "class1_qc2",
+					"description": "How clean are the windows?",
+					"type": "stars",
+					"max": 5,
+					"min": 1
+				},
+				{
+					"id": "class1_qc3",
+					"description": "Please rate the quality of the dusting",
+					"type": "RAG"
+				}
+			]
+		}
+	]
+}
