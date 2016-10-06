@@ -17,7 +17,7 @@ block content
                   input.form-control(type="text", name='#{q.id}', id='#{q.id}')
               when 'stars'
                 .col-sm-10.col-lg-9
-                  input.form-control.rating(name='#{q.id}', data-min='#{q.min}', data-max='#{q.max}', data-step=1, id='#{q.id}')
+                  input.form-control.rating(name='#{q.id}', data-min='#{q.min}', data-max='#{q.max}', data-step=1, id='#{q.id}', data-size='sm', data-show-caption="false")
               default
                 .col-sm-10.col-lg-9
                   input.form-control(type="text", name='#{q.id}', id='#{q.id}')

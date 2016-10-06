@@ -1,0 +1,42 @@
+[
+	{
+		"id": 1234,
+		"template": {
+			"id": 1,
+			"name": "St. Joseph's School"
+		},
+		"client":{
+			"id": 1,
+			"name": "St. Joseph's Secondary School",
+			"address": {
+				"unit_no": 25,
+				"address1": "Some Street",
+				"address2": "",
+				"town": "Croydon",
+				"county": "Surrey",
+				"post_code": "CR9 7AX"
+			}
+		},
+		"audit_date": "2016-10-06 00:00:00"
+	},
+	{
+		"id": 5678,
+		"template": {
+			"id": 5,
+			"name": "Croydon University Hospital"
+		},
+		"client":{
+			"id": 6,
+			"name": "Croydon University Hospital",
+			"address": {
+				"unit_no": 25,
+				"address1": "Some Street",
+				"address2": "",
+				"town": "Croydon",
+				"county": "Surrey",
+				"post_code": "CR9 7AX"
+			}
+		},
+		"audit_date": "2016-10-07 00:00:00"
+	}
+]

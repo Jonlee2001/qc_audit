@@ -4,7 +4,9 @@ var fs = require('fs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('audit', { title: 'Audit List' });
+  var jsonData = JSON.parse(fs.readFileSync(__dirname +'/../data/QC Audit List.json'));
+  //res.json(jsonData);
+  res.render('partials/qc_list', { audits: jsonData });
 });
 router.get('/:audit_id', function(req,res,next){
   var jsonData = JSON.parse(fs.readFileSync(__dirname +'/../data/' + req.params.audit_id + '.json'));
