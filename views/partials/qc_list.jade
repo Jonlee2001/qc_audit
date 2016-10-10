@@ -42,19 +42,23 @@ block content
               width: 75
             },{
                 field: 'id',
-                title: 'Audit ID'
-              }, {
+                title: 'Audit ID',
+                width: 100
+              }, 
+              {
                   field: 'client.name',
-                  title: 'Cient'
+                  title: 'Cient',
+                  sortable: true
               },
               {
-                field: 'id',
                 title: 'Status',
-                formatter: function(value){
-                  if (localStorage.getItem(value) == null){
+                width: 125,
+                sortable: true,
+                formatter: function(value, row){
+                  if (localStorage.getItem(row['id']) == null){
                     return '<h4><span class="label label-default">Not Started<span></h4>';
                   }else{
-                    var jsonData = JSON.parse(localStorage.getItem(value));
+                    var jsonData = JSON.parse(localStorage.getItem(row['id']));
                     switch(jsonData.status){
                       case 'Complete' :
                         return '<h4><span class="label label-success">Complete</span></h4>';

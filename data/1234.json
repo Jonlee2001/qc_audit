@@ -59,6 +59,103 @@
 					"type": "RAG"
 				}
 			]
+		},
+		{
+			"id": "class2",
+			"name": "Classroom 2",
+			"checks": [
+				{
+					"id": "class2_qc1",
+					"description": "Has the floor been hoovered?",
+					"type": "yes/no"
+				},
+				{
+					"id": "class2_qc2",
+					"description": "How clean are the windows?",
+					"type": "stars",
+					"max": 5,
+					"min": 1
+				},
+				{
+					"id": "class2_qc3",
+					"description": "Please rate the quality of the dusting",
+					"type": "RAG"
+				}
+			]
+		},
+		{
+			"id": "staff",
+			"name": "Staff Room",
+			"checks": [
+				{
+					"id": "staff_qc1",
+					"description": "Has the floor been hoovered?",
+					"type": "yes/no"
+				},
+				{
+					"id": "staff_qc2",
+					"description": "How clean are the windows?",
+					"type": "stars",
+					"max": 5,
+					"min": 1
+				},
+				{
+					"id": "staff_qc3",
+					"description": "Please rate the quality of the dusting",
+					"type": "RAG"
+				},
+				{
+					"id": "staff_qc4",
+					"description": "Has the kitchenette been cleaned?",
+					"type": "yes/no"
+				}
+			]
+		},
+		{
+			"id": "toilets1",
+			"name": "Ground Floor Toilets",
+			"checks": [
+				{
+					"id": "toilets1_qc1",
+					"description": "Has the floor been hoovered?",
+					"type": "yes/no"
+				},
+				{
+					"id": "toilets1_qc2",
+					"description": "How clean are the windows?",
+					"type": "stars",
+					"max": 5,
+					"min": 1
+				},
+				{
+					"id": "toilets1_qc3",
+					"description": "Please rate the quality of the dusting",
+					"type": "RAG"
+				}
+			]
+		},
+		{
+			"id": "toilets2",
+			"name": "First Floor Toilets",
+			"checks": [
+				{
+					"id": "toilets2_qc1",
+					"description": "Has the floor been hoovered?",
+					"type": "yes/no"
+				},
+				{
+					"id": "toilets2_qc2",
+					"description": "How clean are the windows?",
+					"type": "stars",
+					"max": 5,
+					"min": 1
+				},
+				{
+					"id": "toilets2_qc3",
+					"description": "Please rate the quality of the dusting",
+					"type": "RAG"
+				}
+			]
 		}
 	]
 }
