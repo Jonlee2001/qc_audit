@@ -4,22 +4,52 @@ block content
   h2 QC Audit #{data.id}
     br
     small #{data.client.name} - #{data.audit_date}
-  form.form-horizontal.col-lg-6.col-md-8.col-sm-10
-    each area in data.areas
-      fieldset
-        legend #{area.name}
-        each q in area.checks
-          .form-group
-            label.col-sm-2.col-lg-3.control-label #{q.description}
-            case q.type
-              when 'yes/no'
-                .col-sm-10.col-lg-9
-                  input.form-control(type="text", name='#{q.id}', id='#{q.id}')
-              when 'stars'
-                .col-sm-10.col-lg-9
-                  input.form-control.rating(name='#{q.id}', data-min='#{q.min}', data-max='#{q.max}', data-step=1, id='#{q.id}', data-size='sm', data-show-caption="false")
-              default
-                .col-sm-10.col-lg-9
-                  input.form-control(type="text", name='#{q.id}', id='#{q.id}')
-    .form-group
-      button.btn.btn-success.btn-sm(type="Submit") Submit
+  form.form-horizontal.col-lg-6(onSubmit="return false;", id="qcForm")
+    ul.nav.nav-tabs(role="tablist", id="myTabs")
+      each area, index in data.areas
+        -var active = index === 0 ? "active" : ""
+        li(role="presentation", class=active)
+          a(href="##{area.id}", data-toggle="tab") #{area.name}
+    .tab-content
+      each area, index in data.areas
+        -var active = index === 0 ? "active" : ""
+        div(id="#{area.id}", class=["tab-pane", active], style="margin-top: 15px;")
+          each q in area.checks
+            .form-group
+              label.col-sm-4.col-lg-3.control-label #{q.description}
+              case q.type
+                when 'yes/no'
+                  .col-sm-8.col-lg-9
+                    input.form-control(type="text", name='#{q.id}', id='#{q.id}')
+                when 'stars'
+                  .col-sm-8.col-lg-9
+                    input.form-control.rating(name='#{q.id}', data-min='#{q.min}', data-max='#{q.max}', data-step=1, id='#{q.id}', data-size='sm', data-show-caption="false")
+                default
+                  .col-sm-8.col-lg-9
+                    input.form-control(type="text", name='#{q.id}', id='#{q.id}')
+          if index != 0
+            button.pull-left.btn.btn-default.btn-sm(onClick="showTab(#{index-1})") < Previous
+          if index != data.areas.length - 1
+            button.pull-right.btn.btn-primary.btn-sm(onClick="showTab(#{index+1})") Next >
+          else
+            button.pull-right.btn.btn-success.btn-sm(onClick="finish()") Finish!
+  script.
+    function showTab(tabId){
+      $('#myTabs li:eq('+tabId+') a').tab('show')
+    }
+    function finish(){
+      var formData = $('#qcForm').serializeArray();
+      var answers = formData.map(function(obj){
+        var output = {};
+        output[obj.name] = obj.value;
+        return output;
+      });
+      var data = {
+        status: 'Complete',
+        completionDate: new Date(),
+        answers: answers
+      }
+      localStorage.setItem(#{data.id}, JSON.stringify(data));
+      window.location.assign('/audit');
+    }
+        

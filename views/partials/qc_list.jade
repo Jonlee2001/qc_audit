@@ -2,19 +2,71 @@ extends ../layout
 
 block content
   h2 QC Audit List
+    a(onClick="getAudits()")
+      i.fa.fa-fw.fa-refresh
 
-  table.table.table-bordered
-    tr
-      th
-      th Audit ID
-      th Template
-      th Client
-      th Address
-    each audit in audits
-      tr
-        td
-          a.btn.btn-sm.btn-primary(href="/audit/#{audit.id}") View
-        td #{audit.id}
-        td #{audit.template.name}
-        td #{audit.client.name}
-        td #{audit.client.address.unit_no} #{audit.client.address.address1}, #{audit.client.address.address2}, #{audit.client.address.town}, #{audit.client.address.county}, #{audit.client.address.post_code}
+  table.table.table-bordered#myTable
+  
+  script.
+    $(document).ready(function() {
+      if (localStorage.getItem('qc-list') != null){
+        renderTable(JSON.parse(localStorage.getItem('qc-list')));
+      }else{
+        getAudits();
+        renderTable(JSON.parse(localStorage.getItem('qc-list')));
+      }
+    });
+    function getAudits(){
+      $.ajax({
+        url: '/audit/list',
+        type: 'GET',
+        success: function(data){
+          localStorage.setItem('qc-list', JSON.stringify(data));
+          //renderTable(JSON.parse(localStorage.getItem('qc-list')));
+          $('#myTable').bootstrapTable('load', JSON.parse(localStorage.getItem('qc-list')));
+        },
+        error: function(e,status,error){
+          console.log(status + ": " + error);
+          alert('Error: ' + error);
+        } 
+      });
+    }
+    function renderTable(data){
+        $('#myTable').bootstrapTable({
+            columns: [{
+              field: 'id',
+              title: '',
+              formatter: function(value){
+                return '<a class="btn btn-sm btn-primary" href="/audit/'+value+'"><i class="fa fa-fw fa-search"></i> View</a>';
+              },
+              width: 75
+            },{
+                field: 'id',
+                title: 'Audit ID'
+              }, {
+                  field: 'client.name',
+                  title: 'Cient'
+              },
+              {
+                field: 'id',
+                title: 'Status',
+                formatter: function(value){
+                  if (localStorage.getItem(value) == null){
+                    return '<h4><span class="label label-default">Not Started<span></h4>';
+                  }else{
+                    var jsonData = JSON.parse(localStorage.getItem(value));
+                    switch(jsonData.status){
+                      case 'Complete' :
+                        return '<h4><span class="label label-success">Complete</span></h4>';
+                        break;
+                      default:
+                        return '<h1 class="label label-primary">'+value+'</h1>';
+                    }
+                  }
+                }
+              }
+            ],
+            data: data,
+            flat: true
+        });
+    }

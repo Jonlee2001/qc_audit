@@ -4,9 +4,11 @@ var fs = require('fs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    res.render('partials/qc_list');
+});
+router.get('/list', function(req,res,next){
   var jsonData = JSON.parse(fs.readFileSync(__dirname +'/../data/QC Audit List.json'));
-  //res.json(jsonData);
-  res.render('partials/qc_list', { audits: jsonData });
+  res.json(jsonData);
 });
 router.get('/:audit_id', function(req,res,next){
   var jsonData = JSON.parse(fs.readFileSync(__dirname +'/../data/' + req.params.audit_id + '.json'));

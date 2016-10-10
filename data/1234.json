@@ -1,9 +1,5 @@
 {
 	"id": 1234,
-	"template": {
-		"id": 1,
-		"name": "St. Joseph's School"
-	},
 	"client":{
 		"id": 1,
 		"name": "St. Joseph's Secondary School",
